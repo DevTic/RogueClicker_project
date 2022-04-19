@@ -3,20 +3,20 @@
 
 
 ## Table of Contents
-1. [Información General](#general-info)
-2. [Tecnologías](#technologies)
-3. [Instalación](#installation)
-4. [Colaboradores](#collaboration)
+1. [Información General](#información-general)
+2. [Tecnologías](#tecnologías)
+3. [Instalación](#instalación)
+4. [Colaboradores](#colaboradores)
 
 
-## General Info
+## Información General
 ***
 Escribir información general del proyecto, estado del proyecto y demas...
 ### Screenshot
 ![Image text](/path/to/the/screenshot.png)
 
 
-## Technologies
+## Tecnologías
 ***
 A list of technologies used within the project:
 * [Technologie name](https://example.com): Version 12.3 
@@ -24,7 +24,7 @@ A list of technologies used within the project:
 * [Library name](https://example.com): Version 1234
 
 
-## Installation
+## Instalación
 ***
 A little intro about the installation. 
 ```
@@ -36,7 +36,7 @@ $ npm start
 Side information: To use the application in a special environment use ```lorem ipsum``` to start
 
 
-## Collaboration
+## Colaboradores
 ***
 Give instructions on how to collaborate with your project.
 > Maybe you want to write a quote in this part. 
