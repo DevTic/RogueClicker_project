@@ -10,14 +10,14 @@
 
 
 ## Información General
-***
+
 Escribir información general del proyecto, estado del proyecto y demas...
 ### Screenshot
 ![Image text](/path/to/the/screenshot.png)
 
 
 ## Tecnologías
-***
+
 A list of technologies used within the project:
 * [Technologie name](https://example.com): Version 12.3 
 * [Technologie name](https://example.com): Version 2.34
@@ -25,7 +25,7 @@ A list of technologies used within the project:
 
 
 ## Instalación
-***
+
 A little intro about the installation. 
 ```
 $ git clone https://example.com
@@ -37,7 +37,7 @@ Side information: To use the application in a special environment use ```lorem i
 
 
 ## Colaboradores
-***
+
 Give instructions on how to collaborate with your project.
 > Maybe you want to write a quote in this part. 
 > It should go over several rows?
