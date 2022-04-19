@@ -13,15 +13,13 @@
 
 Escribir información general del proyecto, estado del proyecto y demas...
 ### Screenshot
-![Image text](/path/to/the/screenshot.png)
+![Imagen de ejemplo](/path/to/the/example.png)
 
 
 ## Tecnologías
 
-A list of technologies used within the project:
-* [Technologie name](https://example.com): Version 12.3 
-* [Technologie name](https://example.com): Version 2.34
-* [Library name](https://example.com): Version 1234
+Para el desarrollo de este proyecto se utilizaron las siguientes tecnologías:
+* [Unity](https://unity.com/download#how-get-started): Version 2019.4.38f1 
 
 
 ## Instalación
