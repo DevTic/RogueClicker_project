@@ -24,15 +24,9 @@ Para el desarrollo de este proyecto se utilizaron las siguientes tecnologías:
 
 ## Instalación
 
-A little intro about the installation. 
-```
-$ git clone https://example.com
-$ cd ../path/to/the/file
-$ npm install
-$ npm start
-```
-Side information: To use the application in a special environment use ```lorem ipsum``` to start
+Para una correcta instalación se recomienda verificar unicamente que las versiones de las tecnologías utilizadas sean de preferencia las mismas (o superiores).
 
+Es posible que si la version de Unity que se tenga en el computador es diferente, el mismo programa intente mantener los archivos y actualizarlos correctamente a su versión.
 
 ## Colaboradores
 
