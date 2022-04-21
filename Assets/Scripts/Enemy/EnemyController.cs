@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -17,7 +16,6 @@ public class EnemyController : MonoBehaviour
     {
         Instance = this;
         isDead = false;
-
     }
 
     private void Start()
@@ -29,7 +27,7 @@ public class EnemyController : MonoBehaviour
     public void SetInfoStatsEnemy()
     {
         hpCurrent = hpMax = enemyStats.hpMax;
-        print(enemyStats);
+
         UI_GameController.Instance.ShowInfoEnemy(enemyStats);
     }
 
@@ -45,7 +43,7 @@ public class EnemyController : MonoBehaviour
         {
             yield return new WaitForSeconds(enemyStats.atkInterval);
             PlayerController.Instance.PlayerTakingDamage(enemyStats.damage);
-            GameController.Instance.ShowTextDamage(false);
+            GameController.Instance.ShowFloatingText(enemyStats.damage, false);
         }
     }
 

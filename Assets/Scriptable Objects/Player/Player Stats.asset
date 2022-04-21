@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc94a9ef2c2bfd4e88afa9d777def57, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
+  nameHero: test
   hpMax: 100
-  level: 20
+  def: 5
+  damage: 1
+  probCritical: 1.6
+  regenAmount: 2
+  regenIntervalTime: 5
+  level: 1

@@ -28,11 +28,12 @@ public class GameController : MonoBehaviour
             clickCounter++;
 
             EnemyController.Instance.EnemyTakingDamage(1);
-            ShowTextDamage();
+            ShowFloatingText(1);
         }
     }
 
-    public void ShowTextDamage(bool _inEnemy = true)
+    // muestra un texto flotante cada vez que recibe/hace daño, golpé critico, se regenera, etc.
+    public void ShowFloatingText(int _dmg, bool _inEnemy = true, bool _critic = false, bool _isDmg = true)
     {
         GameObject obj;
         if (_inEnemy)
@@ -41,9 +42,12 @@ public class GameController : MonoBehaviour
             obj = Instantiate(prefabFloatingText, posPlayer);
 
         //obj.transform.localScale = Vector3.one;
-        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localPosition = new Vector3(Random.Range(-.3f, .3f), 0f, 0f);
+        
+        FloatingText ftxt = obj.GetComponent<FloatingText>();
+        ftxt.SetInfoFloatText(_dmg, _inEnemy, _critic, _isDmg);
 
-        Destroy(obj, 2f);
+        Destroy(obj, 1f);
     }
 
     public void CameraShake()

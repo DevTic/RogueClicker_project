@@ -18,8 +18,8 @@ public class EnemyStats_SO : ScriptableObject
 
     [Header("Parametros de daño al jugador")]
     [Tooltip("Daño normal del enemigo.")]
-    [Range(0f, 50f)]
-    public float damage = 0f;
+    [Range(0, 99)]
+    public int damage = 0;
     [Tooltip("Establece el intervalo de tiempo entre cada ataque del enemigo.")]
     [Range(0.1f, 5f)]
     public float atkInterval = 0.1f;

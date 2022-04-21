@@ -20,7 +20,6 @@ public class UI_GameController : MonoBehaviour
 
     public void ShowInfoEnemy(EnemyStats_SO _stats)
     {
-        print(_stats);
         txtNameEnemy.text = string.Format("{0} (Lvl. {1})", _stats.nameEnemy, _stats.level);
         txtHP_Enemy.text = string.Format("{0} / {0}", _stats.hpMax);
 
