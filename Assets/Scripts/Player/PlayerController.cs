@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private PlayerStats_SO playerStats;
+    public PlayerStats_SO playerStats;
 
     [SerializeField] private int hpCurrent;
     [SerializeField] private int hpMax;
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        UI_GameController.Instance.ShowHealthBarPlayer(playerStats);
         PlayerRegeneration();
     }
 
@@ -35,7 +36,10 @@ public class PlayerController : MonoBehaviour
         if (hpCurrent <= 0)
         {
             // Dead
+            hpCurrent = 0;
         }
+        
+        UI_GameController.Instance.UpdateHealthBarPlayer(hpCurrent, playerStats);
     }
 
     // Jugador sanando
@@ -47,6 +51,9 @@ public class PlayerController : MonoBehaviour
 
         if (hpCurrent >= hpMax)
             hpCurrent = hpMax;
+
+        UI_GameController.Instance.UpdateHealthBarPlayer(hpCurrent, playerStats);
+
     }
 
     public void PlayerRegeneration()
@@ -60,7 +67,7 @@ public class PlayerController : MonoBehaviour
         {
             yield return new WaitForSeconds(playerStats.regenIntervalTime);
 
-            if ((playerStats.regenAmount > 0) && (hpCurrent < hpMax))
+            if (!isDead && (playerStats.regenAmount > 0) && (hpCurrent < hpMax))
                 PlayerHealing(playerStats.regenAmount);
         }
     }

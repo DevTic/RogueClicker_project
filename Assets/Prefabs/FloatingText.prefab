@@ -65,9 +65,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtDamage: {fileID: 4908282879841991319}
-  colorDmgNormal: {r: 1, g: 0.7678805, b: 0, a: 1}
-  colorDmgReceived: {r: 1, g: 0, b: 0, a: 1}
-  colorDmgCritical: {r: 0.8867924, g: 0.30335858, b: 0, a: 1}
+  colorDmgNormal: {r: 0.9056604, g: 0.72561574, b: 0.12388753, a: 1}
+  colorDmgReceived: {r: 0.24528301, g: 0, b: 0.02686081, a: 1}
+  colorDmgCritical: {r: 1, g: 0.12959069, b: 0, a: 1}
   colorHealing: {r: 0, g: 1, b: 0.07514191, a: 1}
 --- !u!1 &8463590024731717408
 GameObject:
@@ -182,8 +182,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278246911
-  m_fontColor: {r: 1, g: 0.86508846, b: 0, a: 1}
+    rgba: 4279500544
+  m_fontColor: {r: 0, g: 1, b: 0.07514191, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
