@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float hpCurrent;
     [SerializeField] private float hpMax;
 
-    private bool isDead;
+    public bool isDead;
 
     public static EnemyController Instance { get; set; }
 
@@ -29,6 +29,7 @@ public class EnemyController : MonoBehaviour
         hpCurrent = hpMax = enemyStats.hpMax;
 
         UI_GameController.Instance.ShowInfoEnemy(enemyStats);
+        SpriteEffectsController.Instance.ShowEffect_Appear();
     }
 
     // Empieza a ejecutarse una vez se inicialice la instancia el enemigo
@@ -42,8 +43,13 @@ public class EnemyController : MonoBehaviour
         while (!isDead)
         {
             yield return new WaitForSeconds(enemyStats.atkInterval);
-            PlayerController.Instance.PlayerTakingDamage(enemyStats.damage);
-            GameController.Instance.ShowFloatingText(enemyStats.damage, false);
+
+            // control para evitar propinarle un golpe cuando ya esta muerto
+            if (!isDead)
+            {
+                PlayerController.Instance.PlayerTakingDamage(enemyStats.damage);
+                GameController.Instance.ShowFloatingText(enemyStats.damage, false);
+            }
         }
     }
 
@@ -66,5 +72,6 @@ public class EnemyController : MonoBehaviour
         isDead = true;
 
         // definir que hacer cuando muere ............
+        SpriteEffectsController.Instance.ShowEffect_Dissolve();
     }
 }

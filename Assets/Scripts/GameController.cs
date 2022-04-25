@@ -25,10 +25,17 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) || Input.touchCount > 0)
         {
+            if (EnemyController.Instance.isDead)
+                return;
+
             clickCounter++;
 
-            EnemyController.Instance.EnemyTakingDamage(1);
-            ShowFloatingText(1);
+            int dmg = PlayerController.Instance.playerStats.damage;
+            ShowFloatingText(dmg);
+            EnemyController.Instance.EnemyTakingDamage(dmg);
+
+            // calcular ataques críticos
+            CalculateProbCritic(dmg);
         }
     }
 
@@ -42,8 +49,8 @@ public class GameController : MonoBehaviour
             obj = Instantiate(prefabFloatingText, posPlayer);
 
         //obj.transform.localScale = Vector3.one;
-        obj.transform.localPosition = new Vector3(Random.Range(-.3f, .3f), 0f, 0f);
-        
+        obj.transform.localPosition = new Vector3(Random.Range(-.35f, .35f), 0f, 0f);
+
         FloatingText ftxt = obj.GetComponent<FloatingText>();
         ftxt.SetInfoFloatText(_dmg, _inEnemy, _critic, _isDmg);
 
@@ -53,5 +60,18 @@ public class GameController : MonoBehaviour
     public void CameraShake()
     {
         CinemachineShake.Instance.ShakeCamera(camShake_magnitude, camShake_duration);
+    }
+
+    private void CalculateProbCritic(int _dmg)
+    {
+        float probC = PlayerController.Instance.playerStats.probCritical;
+        if (probC > 0.0f)
+        {
+            if (probC >= Random.Range(0f, 100f))
+            {
+                ShowFloatingText(_dmg * 2, true, true);
+                EnemyController.Instance.EnemyTakingDamage(_dmg * 2);
+            }
+        }
     }
 }
