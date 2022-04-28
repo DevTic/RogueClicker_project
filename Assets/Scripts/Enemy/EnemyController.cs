@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private EnemyStats_SO enemyStats;
+    [SerializeField] private SpriteEffectsController spriteEffectsEnemy;
 
     [SerializeField] private float hpCurrent;
     [SerializeField] private float hpMax;
@@ -29,7 +30,7 @@ public class EnemyController : MonoBehaviour
         hpCurrent = hpMax = enemyStats.hpMax;
 
         UI_GameController.Instance.ShowInfoEnemy(enemyStats);
-        SpriteEffectsController.Instance.ShowEffect_Appear();
+        spriteEffectsEnemy.ShowEffect_Appear();
     }
 
     // Empieza a ejecutarse una vez se inicialice la instancia el enemigo
@@ -54,9 +55,14 @@ public class EnemyController : MonoBehaviour
     }
 
     // Enemigo recibiendo daño
-    public void EnemyTakingDamage(float damage)
+    public void EnemyTakingDamage(float damage, bool _critic = false)
     {
         hpCurrent -= damage;
+
+        if (_critic)
+            spriteEffectsEnemy.ShowEffect_TintSprite(new Color(1f, .7f, .7f, .3f));
+        else
+            spriteEffectsEnemy.ShowEffect_TintSprite(new Color(1f, .7f, .7f, .1f));
 
         if (hpCurrent <= 0)
         {
@@ -72,6 +78,6 @@ public class EnemyController : MonoBehaviour
         isDead = true;
 
         // definir que hacer cuando muere ............
-        SpriteEffectsController.Instance.ShowEffect_Dissolve();
+        spriteEffectsEnemy.ShowEffect_Dissolve();
     }
 }

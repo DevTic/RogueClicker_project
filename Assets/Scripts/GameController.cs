@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
             if (probC >= Random.Range(0f, 100f))
             {
                 ShowFloatingText(_dmg * 2, true, true);
-                EnemyController.Instance.EnemyTakingDamage(_dmg * 2);
+                EnemyController.Instance.EnemyTakingDamage(_dmg * 2, true);
             }
         }
     }
