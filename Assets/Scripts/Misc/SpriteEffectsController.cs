@@ -9,75 +9,72 @@ public class SpriteEffectsController : MonoBehaviour
     Material _mat;
     Animator _anim;
 
-    //bool isDissolving = false;
-    //bool isAppear = false;
-    //float fade = 1f;
-
-    public static SpriteEffectsController Instance { get; set; }
+    private Color _matTintColor;
+    private float _tintFadeSpeed;
+    private bool _useTint = false;
 
     private void Awake()
     {
-        Instance = this;
         _mat = this.GetComponent<SpriteRenderer>().material;
         _anim = this.GetComponent<Animator>();
+
+        // establecer color de daño al sprite
+        _matTintColor = new Color(1, 0, 0, 0);
+        _tintFadeSpeed = 6f;
+    }
+
+    private void Start()
+    {
+        _mat.SetInt("_UseTint", 0); // false
     }
 
     void Update()
     {
-        //if (isDissolving)
-        //{
-        //    Dissolve();
-        //}
-
-        //if (isAppear)
-        //{
-        //    Appear();
-        //}
+        if (_useTint)
+        {
+            if (_matTintColor.a > 0)
+            {
+                _matTintColor.a = Mathf.Clamp01(_matTintColor.a - _tintFadeSpeed * Time.deltaTime);
+                SetTintColor(_matTintColor);
+            }
+            else
+            {
+                _useTint = false;
+                _mat.SetInt("_UseTint", 0); // false
+            }
+        }
     }
 
     public void ShowEffect_Dissolve()
     {
-        //isDissolving = true;
-        //fade = 1f;
-        //_mat.SetFloat("_Scale", 10f);
-        //_mat.SetColor("_ColorBorder", colorDissolve);
+        _mat.SetInt("_UseDissolve", 1);
+        _mat.SetInt("_UseTint", 0);
         _anim.SetTrigger("isDissolve");
     }
 
     public void ShowEffect_Appear()
     {
-        //isAppear = true;
-        //fade = 0f;
-        //_mat.SetFloat("_Fade", fade);
-        //_mat.SetFloat("_Scale", 80f);
-        //_mat.SetColor("_ColorBorder", colorAppear);
+        _mat.SetInt("_UseDissolve", 1);
+        _mat.SetInt("_UseTint", 0);
         _anim.SetTrigger("isAppear");
     }
-    /*
-    private void Dissolve()
+
+    public void ShowEffect_TintSprite(Color _color, float _speed = 6f)
     {
-        fade -= Time.deltaTime;
-
-        if (fade <= 0f)
-        {
-            isDissolving = false;
-            fade = 0f;
-        }
-
-        _mat.SetFloat("_Fade", fade);
+        _useTint = true;
+        _mat.SetInt("_UseTint", 1); // true
+        SetTintFadeSpeed(_speed);
+        SetTintColor(_color);
+    }
+    
+    private void SetTintColor(Color _color)
+    {
+        _matTintColor = _color;
+        _mat.SetColor("_ColorTint", _matTintColor);
     }
 
-    private void Appear()
+    private void SetTintFadeSpeed(float _speed)
     {
-        fade += Time.deltaTime;
-
-        if (fade >= 1f)
-        {
-            isAppear = false;
-            fade = 1f;
-        }
-
-        _mat.SetFloat("_Fade", fade);
+        this._tintFadeSpeed = _speed;
     }
-    */
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public PlayerStats_SO playerStats;
+    public SpriteEffectsController spriteEffectsPlayer;
 
     [SerializeField] private int hpCurrent;
     [SerializeField] private int hpMax;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
         // Da efecto a la camara al recibir un golpe
         GameController.Instance.CameraShake();
+        spriteEffectsPlayer.ShowEffect_TintSprite(new Color(1f, .7f, .7f, 1f));
         if (hpCurrent <= 0)
         {
             // Dead
