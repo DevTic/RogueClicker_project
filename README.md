@@ -35,4 +35,4 @@ Es posible que si la version de Unity que se tenga en el computador es diferente
 _Son mencionados los participantes del desarrollo y aspectos del arte y diseño del juego._
 
 * **Ricardo Esparza** - *Arte y diseño del juego* - [Rockthar](https://github.com/rokthar)
-* **Erick Jara** - *Programación y diseño del juego* - [Wargosh](https://github.com/Wargosh)
+* **Erick Jara** - *Programación y shaders del juego* - [Wargosh](https://github.com/Wargosh)
