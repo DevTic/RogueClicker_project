@@ -12,6 +12,7 @@ public class EnemyStats_SO : ScriptableObject
     }
 
     [Header("General")]
+    public RuntimeAnimatorController animatorController;
     public string nameEnemy;
     public float hpMax;
     public TypeEnemy typeEnemy;
@@ -21,7 +22,7 @@ public class EnemyStats_SO : ScriptableObject
     [Range(0, 99)]
     public int damage = 0;
     [Tooltip("Establece el intervalo de tiempo entre cada ataque del enemigo.")]
-    [Range(0.1f, 5f)]
+    [Range(0.1f, 20f)]
     public float atkInterval = 0.1f;
     
     [Space]

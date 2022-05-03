@@ -2,16 +2,14 @@
 
 public class SpriteEffectsController : MonoBehaviour
 {
-    [Header("Efecto dissolve")]
-    [SerializeField] Color colorDissolve;
-    [SerializeField] Color colorAppear;
-
     Material _mat;
     Animator _anim;
 
     private Color _matTintColor;
     private float _tintFadeSpeed;
     private bool _useTint = false;
+
+    private int useDissolve = 0;
 
     private void Awake()
     {
@@ -41,6 +39,7 @@ public class SpriteEffectsController : MonoBehaviour
             {
                 _useTint = false;
                 _mat.SetInt("_UseTint", 0); // false
+                _mat.SetInt("_UseDissolve", useDissolve);
             }
         }
     }
@@ -62,7 +61,9 @@ public class SpriteEffectsController : MonoBehaviour
     public void ShowEffect_TintSprite(Color _color, float _speed = 6f)
     {
         _useTint = true;
-        _mat.SetInt("_UseTint", 1); // true
+        useDissolve = _mat.GetInt("_UseDissolve");
+        _mat.SetInt("_UseDissolve", 1);
+        _mat.SetInt("_UseTint", 1);
         SetTintFadeSpeed(_speed);
         SetTintColor(_color);
     }

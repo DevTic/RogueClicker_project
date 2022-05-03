@@ -5,11 +5,12 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerStats_SO playerStats;
     public SpriteEffectsController spriteEffectsPlayer;
+    public Animator animPlayer;
 
     [SerializeField] private int hpCurrent;
     [SerializeField] private int hpMax;
 
-    private bool isDead;
+    [HideInInspector] public bool isDead;
 
     public static PlayerController Instance { get; set; }
 
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         Instance = this;
         isDead = false;
+        animPlayer.runtimeAnimatorController = playerStats.animatorController;
 
         hpCurrent = hpMax = playerStats.hpMax;        
     }
@@ -30,6 +32,9 @@ public class PlayerController : MonoBehaviour
     // Jugador recibe daño
     public void PlayerTakingDamage(int damage)
     {
+        if (isDead)
+            return;
+
         hpCurrent -= damage;
 
         // Da efecto a la camara al recibir un golpe
@@ -37,11 +42,27 @@ public class PlayerController : MonoBehaviour
         spriteEffectsPlayer.ShowEffect_TintSprite(new Color(1f, .7f, .7f, 1f));
         if (hpCurrent <= 0)
         {
-            // Dead
             hpCurrent = 0;
+            Dead();
         }
         
         UI_GameController.Instance.UpdateHealthBarPlayer(hpCurrent, playerStats);
+    }
+
+    // Jugador atacando
+    public void PlayerAttack(bool _critic)
+    {
+        if (_critic)
+        {
+            // animación de ataque critico
+            animPlayer.SetTrigger("atk3");
+        }
+        else
+        {
+            // animación de ataque aleatorio normal
+            int rAtk = Random.Range(1, 3);
+            animPlayer.SetTrigger(string.Format("atk{0}", rAtk));
+        }
     }
 
     // Jugador sanando
@@ -58,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Jugador regenerando salud
     public void PlayerRegeneration()
     {
         StartCoroutine(DelayRegeneration());
@@ -72,5 +94,10 @@ public class PlayerController : MonoBehaviour
             if (!isDead && (playerStats.regenAmount > 0) && (hpCurrent < hpMax))
                 PlayerHealing(playerStats.regenAmount);
         }
+    }
+
+    public void Dead()
+    {
+        isDead = true;
     }
 }

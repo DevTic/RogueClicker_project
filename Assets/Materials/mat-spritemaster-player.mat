@@ -25,14 +25,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_58D2B873: 0.0015
+    - Vector1_58D2B873: 0.001
     - _Boolean: 0
     - _Fade: 1
     - _Scale: 10
-    - _UseDissolve: 1
-    - _UseTint: 1
+    - _UseDissolve: 0
+    - _UseTint: 0
     m_Colors:
     - _ColorBase: {r: 1, g: 1, b: 1, a: 0.5019608}
     - _ColorBorder: {r: 2.9960785, g: 0.87513316, b: 0, a: 1}
-    - _ColorOutline: {r: 0, g: 7.8287344, b: 42.722507, a: 1}
+    - _ColorOutline: {r: 12.695839, g: 28.278307, b: 42.722507, a: 1}
     - _ColorTint: {r: 1, g: 0.7311321, b: 0.7311321, a: 0}
