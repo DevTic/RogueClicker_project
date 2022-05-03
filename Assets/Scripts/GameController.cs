@@ -23,20 +23,50 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) || Input.touchCount > 0)
+        if (PlayerController.Instance.isDead)
+            return;
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Space))
+            PlayerAttack();
+#elif PLATFORM_ANDROID || UNITY_ANDROID
+        // Solo aceptar como máximo dos (taps simultaneos) dedos a la vez
+        foreach (Touch touch in Input.touches)
         {
-            if (EnemyController.Instance.isDead)
-                return;
+            if (touch.fingerId == 0)
+            {
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    Debug.Log("First finger left.");
+                    PlayerAttack();
+                }
+            }
 
-            clickCounter++;
-
-            int dmg = PlayerController.Instance.playerStats.damage;
-            ShowFloatingText(dmg);
-            EnemyController.Instance.EnemyTakingDamage(dmg);
-
-            // calcular ataques críticos
-            CalculateProbCritic(dmg);
+            if (touch.fingerId == 1)
+            {
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    Debug.Log("Second finger left.");
+                    PlayerAttack();
+                }
+            }
         }
+#endif
+    }
+
+    private void PlayerAttack() {
+        if (EnemyController.Instance.isDead)
+            return;
+
+        clickCounter++;
+
+        int dmg = PlayerController.Instance.playerStats.damage;
+        EnemyController.Instance.EnemyTakingDamage(dmg);
+
+        // calcular ataques críticos
+        CalculateProbCritic(dmg);
+
+        ShowFloatingText(dmg);
     }
 
     // muestra un texto flotante cada vez que recibe/hace daño, golpé critico, se regenera, etc.
@@ -49,7 +79,7 @@ public class GameController : MonoBehaviour
             obj = Instantiate(prefabFloatingText, posPlayer);
 
         //obj.transform.localScale = Vector3.one;
-        obj.transform.localPosition = new Vector3(Random.Range(-.35f, .35f), 0f, 0f);
+        obj.transform.localPosition = new Vector3(Random.Range(-.4f, .4f), Random.Range(-.4f, .2f), 0f);
 
         FloatingText ftxt = obj.GetComponent<FloatingText>();
         ftxt.SetInfoFloatText(_dmg, _inEnemy, _critic, _isDmg);

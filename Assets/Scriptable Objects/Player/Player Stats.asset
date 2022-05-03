@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc94a9ef2c2bfd4e88afa9d777def57, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
-  nameHero: test
+  animatorController: {fileID: 9100000, guid: 7b4320bbde4a6854c844c260fe3dac08, type: 2}
+  nameHero: Hero 1
   hpMax: 100
   def: 5
   damage: 1
-  probCritical: 1.6
+  probCritical: 1.2
   regenAmount: 2
-  regenIntervalTime: 5
+  regenIntervalTime: 8.2
   level: 1

@@ -4,6 +4,7 @@
 public class PlayerStats_SO : ScriptableObject
 {
     [Header("General")]
+    public RuntimeAnimatorController animatorController;
     public string nameHero;            // nombre del jugador
     public int hpMax;                  // puntos de vida máximo
     public int def;                    // puntos de defensa

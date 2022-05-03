@@ -1,0 +1,3 @@
+rep "RogueClicker_project@DevTic@cloud"
+  path "/"
+    smartbranch "/main"

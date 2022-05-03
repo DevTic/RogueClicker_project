@@ -27,7 +27,7 @@ public class UI_GameController : MonoBehaviour
         txtNameEnemy.text = string.Format("{0} (Lvl. {1})", _stats.nameEnemy, _stats.level);
         txtHP_Enemy.text = string.Format("{0} / {0}", _stats.hpMax);
 
-        sliderHP_Enemy.maxValue = sliderHP_Enemy.value = _stats.hpMax;
+        sliderHP_Enemy.value = sliderHP_Enemy.maxValue = _stats.hpMax;
     }
 
     public void UpdateInfoEnemy(float _hpEnemy, EnemyStats_SO _stats)

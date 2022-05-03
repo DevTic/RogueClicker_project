@@ -25,6 +25,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Thickness: 0.002
+    - _Thickness: 0
     m_Colors:
-    - _ColorOutline: {r: 13.76636, g: 0.6805247, b: 0, a: 1}
+    - _ColorOutline: {r: 0.0007314645, g: 0.00024126838, b: 0, a: 1}
