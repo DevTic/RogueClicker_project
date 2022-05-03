@@ -1,4 +1,8 @@
 # Rogue-Clicker Project
+<p align="center">
+  <img src="https://github.com/DevTic/RogueClicker_project/blob/main/Assets/Textures/icon_game.png?raw=true" alt="Icon game"/>
+</p>
+ 
  Proyecto de un minijuego basado en los estilos roguelike y clicker, utilizando Unity.
 
 
@@ -11,9 +15,7 @@
 
 ## Información General
 
-Escribir información general del proyecto, estado del proyecto y demas...
-### Screenshot
-![Imagen de ejemplo](/path/to/the/example.png)
+Este proyecto se inicio a partir de ver un video en el que se inauguró el #DESAFIOHOLAMUNDO, en el cuál se proponia 7 retos de aplicaciones diferentes entre las que estaba la categoría de un proyecto o juego RPG que debia consistir básicamente en derrotar la mayor cantidad de enemigos, siendo la mecánica principal que cada golpe del jugador se generaba cada vez que se de un clic o "tap" en el movil.
 
 
 ## Tecnologías
