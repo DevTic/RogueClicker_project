@@ -15,7 +15,7 @@
 
 ## Información General 📋
 
-Este proyecto se inicio a partir de ver un [video](https://www.youtube.com/watch?v=psSO3T7gslU) en el que se inauguró el #DESAFIOHOLAMUNDO, en el cuál se proponia 7 retos de aplicaciones diferentes entre las que estaba la categoría de un proyecto o juego RPG que debia consistir básicamente en derrotar la mayor cantidad de enemigos, siendo la mecánica principal que cada golpe del jugador se generaba cada vez que se de un clic o "tap" en el movil.
+Este proyecto se inicio a partir de ver un [video](https://www.youtube.com/watch?v=psSO3T7gslU) en el que se inauguró el #DESAFIOHOLAMUNDO, en el cuál se proponia 7 retos de aplicaciones diferentes entre las que estaba la categoría de un proyecto o juego RPG que debia consistir básicamente en derrotar la mayor cantidad de enemigos, siendo la mecánica principal que cada golpe del jugador se genera cada vez que se de un clic o "tap" en el movil.
 
 
 ## Tecnologías 📦
