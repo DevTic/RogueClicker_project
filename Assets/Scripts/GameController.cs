@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameController : MonoBehaviour
 {
@@ -14,16 +15,27 @@ public class GameController : MonoBehaviour
     [SerializeField] private float camShake_duration = .15f;
     [SerializeField] private float camShake_magnitude = .4f;
 
+    [HideInInspector] public bool gameInteractable = false;
+
     public static GameController Instance { get; set; }
+
+    private PlayableDirector playableDirector;
 
     private void Awake()
     {
         Instance = this;
+        playableDirector = this.GetComponent<PlayableDirector>();
+    }
+
+    private void Start()
+    {
+        playableDirector.Play();
+        EnemyController.Instance.ShowEffectOutline();
     }
 
     private void Update()
     {
-        if (PlayerController.Instance.isDead)
+        if (!gameInteractable || PlayerController.Instance.isDead)
             return;
 
 #if UNITY_EDITOR
@@ -54,6 +66,13 @@ public class GameController : MonoBehaviour
 #endif
     }
 
+    public void StartGame()
+    {
+        gameInteractable = true;
+        EnemyController.Instance.StartGame();
+        PlayerController.Instance.StartGame();
+    }
+
     private void PlayerAttack() {
         if (EnemyController.Instance.isDead)
             return;
@@ -63,9 +82,7 @@ public class GameController : MonoBehaviour
         int dmg = PlayerController.Instance.playerStats.damage;
         EnemyController.Instance.EnemyTakingDamage(dmg);
 
-        // calcular ataques críticos
         CalculateProbCritic(dmg);
-
         ShowFloatingText(dmg);
     }
 
@@ -92,6 +109,7 @@ public class GameController : MonoBehaviour
         CinemachineShake.Instance.ShakeCamera(camShake_magnitude, camShake_duration);
     }
 
+    // Calcula los ataques criticos según la probabilidad del jugador
     private void CalculateProbCritic(int _dmg)
     {
         float probC = PlayerController.Instance.playerStats.probCritical;

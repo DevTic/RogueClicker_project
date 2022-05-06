@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class UI_GameController : MonoBehaviour
@@ -15,11 +16,19 @@ public class UI_GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txtHP_Enemy;
     [SerializeField] private Slider sliderHP_Enemy;
 
+    [Header("Panel Game Over")]
+    [SerializeField] private Animator animPanelGameOver;
+
+    [Header("Versión del juego")]
+    [SerializeField] private TextMeshProUGUI txtVersion;
+
     public static UI_GameController Instance { get; set; }
 
     private void Awake()
     {
         Instance = this;
+
+        txtVersion.text = string.Format("v(Alfa): {0}", Application.version);
     }
 
     public void ShowInfoEnemy(EnemyStats_SO _stats)
@@ -52,8 +61,23 @@ public class UI_GameController : MonoBehaviour
         sliderHP_Player.value = _hpPlayer;
     }
 
+    public void Btn_GoMainMenu()
+    {
+        SceneManager.LoadScene("main_menu");
+    }
+
+    public void Btn_ResetScene()
+    {
+        SceneManager.LoadScene("test_game");
+    }
+
     public void Btn_Options()
     {
 
+    }
+
+    public void PlayerDead()
+    {
+        animPanelGameOver.SetTrigger("isDead");
     }
 }

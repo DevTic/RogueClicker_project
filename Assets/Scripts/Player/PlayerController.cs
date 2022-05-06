@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         UI_GameController.Instance.ShowHealthBarPlayer(playerStats);
+    }
+
+    public void StartGame()
+    {
         PlayerRegeneration();
     }
 
@@ -39,13 +43,14 @@ public class PlayerController : MonoBehaviour
 
         // Da efecto a la camara al recibir un golpe
         GameController.Instance.CameraShake();
-        spriteEffectsPlayer.ShowEffect_TintSprite(new Color(1f, .7f, .7f, 1f));
         if (hpCurrent <= 0)
         {
             hpCurrent = 0;
             Dead();
         }
-        
+        else
+            spriteEffectsPlayer.ShowEffect_TintSprite(new Color(1f, .1f, .1f, 1f));
+
         UI_GameController.Instance.UpdateHealthBarPlayer(hpCurrent, playerStats);
     }
 
@@ -68,15 +73,17 @@ public class PlayerController : MonoBehaviour
     // Jugador sanando
     public void PlayerHealing(int amount)
     {
-        hpCurrent += amount;
+        if ((playerStats.regenAmount > 0) && (hpCurrent < hpMax))
+        {
+            hpCurrent += amount;
 
-        GameController.Instance.ShowFloatingText(amount, false, false, false);
+            GameController.Instance.ShowFloatingText(amount, false, false, false);
 
-        if (hpCurrent >= hpMax)
-            hpCurrent = hpMax;
+            if (hpCurrent >= hpMax)
+                hpCurrent = hpMax;
 
-        UI_GameController.Instance.UpdateHealthBarPlayer(hpCurrent, playerStats);
-
+            UI_GameController.Instance.UpdateHealthBarPlayer(hpCurrent, playerStats);
+        }
     }
 
     // Jugador regenerando salud
@@ -91,7 +98,7 @@ public class PlayerController : MonoBehaviour
         {
             yield return new WaitForSeconds(playerStats.regenIntervalTime);
 
-            if (!isDead && (playerStats.regenAmount > 0) && (hpCurrent < hpMax))
+            if (GameController.Instance.gameInteractable && !isDead)
                 PlayerHealing(playerStats.regenAmount);
         }
     }
@@ -99,5 +106,8 @@ public class PlayerController : MonoBehaviour
     public void Dead()
     {
         isDead = true;
+        spriteEffectsPlayer.HideEffect_Outline();
+        spriteEffectsPlayer.ShowEffect_Dissolve();
+        UI_GameController.Instance.PlayerDead();
     }
 }

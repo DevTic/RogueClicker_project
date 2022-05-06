@@ -67,7 +67,20 @@ public class SpriteEffectsController : MonoBehaviour
         SetTintFadeSpeed(_speed);
         SetTintColor(_color);
     }
-    
+
+    public void ShowEffect_Outline()
+    {
+        _mat.SetInt("_UseDissolve", 0);
+        _mat.SetInt("_UseTint", 0);
+        _anim.SetTrigger("isOutline");
+    }
+
+    public void HideEffect_Outline()
+    {
+        _mat.SetInt("_UseDissolve", 1);
+        _mat.SetInt("_UseTint", 1);
+    }
+
     private void SetTintColor(Color _color)
     {
         _matTintColor = _color;
