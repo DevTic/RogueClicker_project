@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
 
     [HideInInspector] public bool isDead;
 
-    private int currentEnemy;
+    private int currentEnemy = -1;
 
     public static EnemyController Instance { get; set; }
 
@@ -23,10 +23,10 @@ public class EnemyController : MonoBehaviour
         InitializeNewEnemy();
     }
 
-    private void Start()
+    public void StartGame()
     {
+        HideEffectOutline();
         AutoAtack();
-        //SetInfoStatsEnemy();
     }
 
     private void InitializeNewEnemy()
@@ -40,7 +40,22 @@ public class EnemyController : MonoBehaviour
 
     private int SelectRandomEnemy()
     {
-        return Random.Range(0, enemyStats.Length);
+        while (true)
+        {
+            int rr = Random.Range(0, enemyStats.Length);
+            if (rr != currentEnemy)
+                return rr;
+        }
+    }
+
+    public void ShowEffectOutline()
+    {
+        spriteEffectsEnemy.ShowEffect_Outline();
+    }
+
+    public void HideEffectOutline()
+    {
+        spriteEffectsEnemy.HideEffect_Outline();
     }
 
     public void SetInfoStatsEnemy()
@@ -59,12 +74,12 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator DelayAtack()
     {
-        while (!isDead && !PlayerController.Instance.isDead)
+        while (!PlayerController.Instance.isDead)
         {
             yield return new WaitForSeconds(enemyStats[currentEnemy].atkInterval);
 
             // control para evitar propinarle un golpe cuando ya esta muerto
-            if (!isDead && !PlayerController.Instance.isDead)
+            if (GameController.Instance.gameInteractable && !isDead && !PlayerController.Instance.isDead)
             {
                 PlayerController.Instance.PlayerTakingDamage(enemyStats[currentEnemy].damage);
                 GameController.Instance.ShowFloatingText(enemyStats[currentEnemy].damage, false);
@@ -80,9 +95,9 @@ public class EnemyController : MonoBehaviour
         PlayerController.Instance.PlayerAttack(_critic);
 
         if (_critic)
-            spriteEffectsEnemy.ShowEffect_TintSprite(new Color(1f, .7f, .7f, .5f));
+            spriteEffectsEnemy.ShowEffect_TintSprite(new Color(1f, .1f, .1f, .35f));
         else
-            spriteEffectsEnemy.ShowEffect_TintSprite(new Color(1f, .7f, .7f, .2f));
+            spriteEffectsEnemy.ShowEffect_TintSprite(new Color(1f, .1f, .1f, .15f));
 
         if (hpCurrent <= 0)
         {
@@ -97,7 +112,13 @@ public class EnemyController : MonoBehaviour
     {
         isDead = true;
 
+        StartCoroutine(DelayNewEnemy());
+    }
+
+    private IEnumerator DelayNewEnemy()
+    {
         spriteEffectsEnemy.ShowEffect_Dissolve();
+        yield return new WaitForSeconds(2f);
         InitializeNewEnemy();
     }
 }

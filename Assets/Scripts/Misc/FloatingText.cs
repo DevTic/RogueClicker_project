@@ -28,7 +28,7 @@ public class FloatingText : MonoBehaviour
             if (_critic)
             {
                 print("critico de: " + _amount);
-                this.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+                this.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 txtDamage.color = colorDmgCritical;    // establecer color del daño critico
             }
             else
