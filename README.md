@@ -30,6 +30,10 @@ Para una correcta instalación se recomienda verificar unicamente que las versio
 
 Es posible que si la version de Unity que se tenga en el computador es diferente, el mismo programa intente mantener los archivos y actualizarlos correctamente a su versión.
 
+## Descargar juego 📦
+
+Actualmente la aplicación solo esta disponible para la plataforma Android, puedes buscar la última versión en los [tags](https://github.com/DevTic/RogueClicker_project/tags) de este mismo proyecto, o bien puedes descargar el proyecto completo siguiendo las intrucciones de instalación y hacer una build hacia cualquier otra plataforma (Windows, Web, iOS, etc).
+
 ## Autores ✒️
 
 _Son mencionados los participantes del desarrollo y aspectos del arte y diseño del juego._
