@@ -53,7 +53,7 @@ public class GameController : MonoBehaviour
                     PlayerAttack();
                 }
             }
-
+            /*
             if (touch.fingerId == 1)
             {
                 if (touch.phase == TouchPhase.Ended)
@@ -62,6 +62,7 @@ public class GameController : MonoBehaviour
                     PlayerAttack();
                 }
             }
+            */
         }
 #endif
     }
